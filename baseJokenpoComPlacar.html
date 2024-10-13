@@ -1,0 +1,105 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Báscio de Objetos e Jokenpo com Placar</title>
+  </head>
+  <body>
+    <p>Escolha sua Jogada</p>
+    <button onclick="
+      playGame('Pedra');
+    ">Pedra
+    </button>
+
+    <button onclick="
+      playGame('Papel');
+    ">Papel
+    </button>
+
+    <button onclick="
+      playGame('Tesoura');
+    ">Tesoura
+    </button>
+
+    <button onclick="
+    placar.vitorias = 0;
+    placar.derrotas = 0;
+    placar.empates = 0;
+    ">
+      Resetar o Placar
+    </button>
+  
+
+    <script>
+      let placar = JSON.parse(localStorage.getItem('placar')) || {
+        vitorias: 0,
+        derrotas: 0,
+        empates: 0
+      };
+
+      function playGame(playerMove) {
+        const computerMove = pickComputerMove();
+
+        let resultado = '';
+
+        if (playerMove === 'Tesoura') {
+          if (computerMove === 'Pedra') {
+            resultado = 'Você Perdeu';
+          } else if (computerMove === 'Papel') {
+            resultado = 'Você Ganhou';
+          } else if (computerMove === 'Tesoura') {
+            resultado = 'Emapate';
+          }
+
+        } else if (playerMove === 'Papel') {
+          if (computerMove === 'Pedra') {
+            resultado = 'Você Ganhou';
+          } else if (computerMove === 'Papel') {
+            resultado = 'Empate';
+          } else if (computerMove === 'Tesoura') {
+            resultado = 'Você Perdeu';
+          }
+          
+        } else if (playerMove === 'Pedra') {
+          if (computerMove === 'Pedra') {
+            resultado = 'Empate';
+          } else if (computerMove === 'Papel') {
+            resultado = 'Você Perdeu';
+          } else if (computerMove === 'scissors') {
+            resultado = 'Você Ganhou';
+          }
+        }
+        
+        if (resultado === 'Você Ganhou'){
+          placar.vitorias += 1;
+        }else if (resultado === 'Você Perdeu'){
+          placar.derrotas += 1;
+        }else if (resultado === 'Empate') {
+          placar.empates += 1;
+        }
+
+        localStorage.setItem('placar', JSON.stringify(placar));
+
+        alert(`Você escolheu ${playerMove} e o Computador escolheu ${computerMove} 
+        \n Portanto ${resultado}.
+        Vitórias: ${placar.vitorias}, Derrotas: ${placar.derrotas}, Empates: ${placar.empates}`);
+      }
+
+      function pickComputerMove() {
+        const randomNumber = Math.random();
+
+        let computerMove = '';
+
+        if (randomNumber >= 0 && randomNumber < 1 / 3) {
+          computerMove = 'Pedra';
+        } else if (randomNumber >= 1 / 3 && randomNumber < 2 / 3) {
+          computerMove = 'Papel';
+        } else if (randomNumber >= 2 / 3 && randomNumber < 1) {
+          computerMove = 'Tesoura';
+        }
+
+        return computerMove;
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <title>Basico de Objetos</title>
+    </head>
+    <body>
+      <script>
+        /*
+        const produto = {
+          nome : 'Vita LLiner',
+          gramatura : 190
+        };
+
+        produto.nome = 'Vita Max';
+        console.log(produto);
+        */
+
+        const produto2 = {
+          nome: 'Vita Bianco'
+        }
+        console.log(produto2);
+        console.log(produto2.nome);
+        console.log(produto2['nome']);
+
+        let produto3 = {
+          nome_produto3: 'Nome1',
+          nota: {
+            estrelas: 5,
+            compras: 200,
+            'quantidade-de-cliques': 1500,
+          },
+          fun: function funcao1(){
+            console.log('função dentro desse objeto');
+          }
+        }
+        produto3.fun();
+
+        /* OBJETOS JSON */
+
+        JSON.stringify(produto3);
+        console.log (JSON.stringify(produto3));
+
+        const jsonString = JSON.stringify(produto3);
+        console.log(JSON.parse(jsonString));
+
+        /* 
+        OBJETOS LOCAIS 
+        APENAS SUPORTAM STRINGS
+        */
+
+        /*
+        Alguns Métodos do js:
+        .legnth - mostra a quantidade de caracteres
+        .toUpperCase() - deixa em maiusculo 
+        */
+
+        const Object1 = {
+          message: 'olá'
+        };
+        const Object2 = Object1;
+
+    
+      </script>
+    </body>
+  </html>
+
+
+
